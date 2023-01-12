@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Vue监测数据改变的原理-数组</title>
+  <!-- 引入 vue -->
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+  <!--准备好一个容器-->
+  <div id="root">
+    <h1>学校信息</h1>
+    <h2>学校名称：{{school.name}}</h2>
+    <h2>学校地址：{{school.address}}</h2>
+    <h2 v-if="school.leader">校长：{{school.leader}}</h2>
+    <hr/>
+    <h1>学生信息</h1>
+    <button @click="addGender">添加一个性别属性，默认值是男</button>
+    <h2>学生姓名：{{student.name}}</h2>
+    <h2 v-if="student.gender">学生性别：{{student.gender}}</h2>
+    <h2>学生年龄：真实-{{student.age.rAge}}，对外-{{student.age.sAge}}</h2>
+    <h2>爱好</h2>
+    <ul>
+      <li v-for="(f,index) in student.hobbies" :key="index">{{f}}</li>
+    </ul>
+    <h2>朋友们</h2>
+    <ul>
+      <li v-for="(f,index) in student.friends" :key="index">{{f.name}}--{{f.age}}</li>
+    </ul>
+  </div>
+
+  <script type="text/javascript">
+    // 设置为 false 以阻止 vue 在启动时生成生产提示。
+    Vue.config.productionTip = false;
+    
+    const vm = new Vue({
+      el: '#root',
+      data: {
+        school: {
+          name: 'SchoolName',
+          address: 'America'
+        },
+        student: {
+          name: 'Tom',
+          // gender: '男',
+          age: {
+            rAge:40,
+            sAge:29
+          },
+          hobbies: [
+            '网球','爬山','跑步'
+          ],
+          friends:[
+            {name:'jerry', age:35},
+            {name:'jack', age:33}
+          ]
+        }
+      },
+      methods: {
+        addGender() {
+          Vue.set(this.student, 'gender', '男')
+          // this.$set(this.student, 'gender', '男')
+        }
+      },
+    })
+  </script>
+</body>
+</html>
