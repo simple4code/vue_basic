@@ -1,1 +1,1 @@
-![这是图片](/assets/img/Vue/Vue实例生命周期5.jpg "Vue")
+![这是图片](/assets/img/Vue/脚手架1.jpg "Vue")
